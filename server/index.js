@@ -2,7 +2,7 @@ const serve = require('koa-static');
 const Koa = require('koa');
 var bodyParser = require('koa-bodyparser');
 const app = new Koa();           
-const sqlDb = require('../database/helpers.js');
+// const sqlDb = require('../database/helpers.js');
  
 
 app.use(bodyParser());   
@@ -30,12 +30,12 @@ app.use(async (ctx, next) => {
     ctx.res.end('posted')
     ctx.status = 200;
     // console.log(ctx.req.body)
-    sqlDb.createRestaurantListModel();
+    // sqlDb.createRestaurantListModel();
   }
  
 await next();
 });
 app.use(serve('../client/public'));
 
-app.listen(3000);
-console.log('listening on port 3000');
+app.listen(8000);
+console.log('listening on port 8000');
