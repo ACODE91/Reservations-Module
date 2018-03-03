@@ -3,7 +3,7 @@ const calendarDatesData = require('./data/datedata.js');
 const timesData = require('./data/timesdata.js');
 const tf2Data = require('./data/2personData.js');
 const Sequelize = require('sequelize');
-const db = new Sequelize('ottest', 'root', 'hackreactor', {
+const db = new Sequelize('opentable', 'root', 'hackreactor', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
@@ -21,10 +21,10 @@ var timesArr = timesData.seedData;
 const Reservation = db.define('reservation', {
   time: Sequelize.STRING,
   date: Sequelize.STRING,
-  table: Sequelize.INTEGER
+  tablesLeft: Sequelize.INTEGER
 });
   
-const RestaurantList = db.define('restaurantList', {
+const RestaurantList = db.define('restaurant', {
   restaurant: Sequelize.STRING
   });
   

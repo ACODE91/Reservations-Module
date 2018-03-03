@@ -49,13 +49,13 @@ var seedData = function(total){
         var obj = {};
         obj.time = timesArray[getRandomInt(timesArray.length)] 
         obj.date = datesArray[getRandomInt(datesArray.length)]
-        obj.table = getRandomInt(3)
-        obj.restaurantListId = getRandomInt(201)
+        obj.tablesLeft = getRandomInt(3)
+        obj.restaurantId = getRandomInt(200)
         recordsArray.push(obj);
         counter++;
 }
-
     return recordsArray;
 }
 
 module.exports.seedData = seedData;
+module.exports.timesArray = timesArray;
