@@ -11,6 +11,8 @@ import People from './people.jsx';
 import _ from 'underscore';
 import datesArray from '../../data/datedata.js'
 import times from '../../data/timesData.js'
+
+
 // import 'react-day-picker/lib/style.css';
 // import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 // import dateStyles from './react_dates_overrides.css';
@@ -28,18 +30,34 @@ this.state = {
   restaurantName: ''
 };
 
-this.findTable = this.findTable.bind(this);
+
 }
 
 findTable() {
   //this function is supposed to query your own database
 
-//  axios.get('/')
+//  axios.post('/')
 //  .then(function (response) {
 //   console.log(response);
 //  }).catch(function (error) {
 //   console.log(error);
 //  });
+
+ axios({
+  method: 'post',
+  url: '/',
+  data: {
+    people: this.state.people,
+    date: this.state.date,
+    time: this.state.time,
+    restaurantName: this.state.restaurantName
+  }
+}).then(function (response) {
+    console.log(response);
+   }).catch(function (error) {
+    console.log(error);
+   });
+
 }
 
   render () {
@@ -49,7 +67,8 @@ findTable() {
     <h2 className="dtp-subheader">Make a free reservation</h2>
 
     <div id="oc-quick-action-link-container"><span className="oc-quick-action-quick-search">Quick Search:</span><span className="oc-quick-action-choice"> <a href="/s/interim?covers=2&amp;dateTime=2018-03-01%2013%3A30&amp;metroId=4&amp;regionIds=8" className="oc-quick-action-choice-link">Lunch tomorrow</a></span></div>
-    <RestaurantSearch clicker={this.findTable} 
+    <RestaurantSearch 
+    qFn={this.findTable.bind(this)}
     appStateQueried={this.state.queried}
     appState={this.state}
     />
@@ -86,7 +105,8 @@ class RestaurantSearch extends React.Component {
   }}
   ></input>
 
-  <input type="Submit" value="Find a Table" className="TableSearch" onClick={this.props.clicker}></input>
+  <div onClick={this.props.qFn} 
+  className = 'submit' value="Find a Table" className="TableSearch" >Find a Table</div>
 
   </form>
 

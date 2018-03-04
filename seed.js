@@ -28,12 +28,22 @@ const RestaurantList = db.define('restaurant', {
   restaurant: Sequelize.STRING
   });
   
-  RestaurantList.sync({force:true}).then(() => {
-    return RestaurantList.bulkCreate(restaurantNameArray).then(() => {
-      Reservation.belongsTo(RestaurantList);
+  // RestaurantList.sync({force:true}).then(() => {
+  //   return RestaurantList.bulkCreate(restaurantNameArray).then(() => {
+  //     Reservation.belongsTo(RestaurantList);
 
-      Reservation.sync({force:true}).then(() => {
-        return Reservation.bulkCreate(timesArr(200));
-      });
+  //     Reservation.sync({force:true}).then(() => {
+  //       return Reservation.bulkCreate(timesArr(200));
+  //     });
+  //   });
+  // });
+ 
+  var query = function(people, date, time, restaurant, callback) {
+     return RestaurantList.findOne({where: {restaurant: restaurant}}).then( item => {
+      Reservation.findOne({where: {restaurantId: item.dataValues.id}}).then(info => {
+        callback(info.dataValues)
+      })
     });
-  });
+  }
+
+  module.exports.query = query;
