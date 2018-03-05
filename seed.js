@@ -41,6 +41,7 @@ const RestaurantList = db.define('restaurant', {
   var query = function(people, date, time, restaurant, callback) {
      return RestaurantList.findOne({where: {restaurant: restaurant}}).then( item => {
       Reservation.findOne({where: {restaurantId: item.dataValues.id}}).then(info => {
+        
         callback(info.dataValues)
       })
     });

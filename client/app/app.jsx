@@ -11,12 +11,7 @@ import People from './people.jsx';
 import _ from 'underscore';
 import datesArray from '../../data/datedata.js'
 import times from '../../data/timesData.js'
-
-
-// import 'react-day-picker/lib/style.css';
-// import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
-// import dateStyles from './react_dates_overrides.css';
-// import calendar from './calendar.jsx'
+import $ from "jquery";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,21 +22,14 @@ this.state = {
   people: null,
   date: null,
   time: null,
-  restaurantName: ''
+  restaurantName: '',
+  tablesAvaiable: 0
 };
-
 
 }
 
 findTable() {
-  //this function is supposed to query your own database
-
-//  axios.post('/')
-//  .then(function (response) {
-//   console.log(response);
-//  }).catch(function (error) {
-//   console.log(error);
-//  });
+let app = this;
 
  axios({
   method: 'post',
@@ -53,7 +41,10 @@ findTable() {
     restaurantName: this.state.restaurantName
   }
 }).then(function (response) {
-    console.log(response);
+  app.setState({queried: true});
+   console.log(response);
+   app.setState({tablesAvaiable: response.data.tablesLeft});
+   console.log(app.state)
    }).catch(function (error) {
     console.log(error);
    });
@@ -61,6 +52,7 @@ findTable() {
 }
 
   render () {
+
     return ( 
     <div className="content-block-header">
     <h1 className="page-header-title dtp-header">Peninsula Restaurants</h1>
@@ -73,7 +65,6 @@ findTable() {
     appState={this.state}
     />
     </div>
-
     )}
 }
 
@@ -82,19 +73,32 @@ class RestaurantSearch extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+  var props = this.props;
+
+    $('.DayPicker-Day').on('click', function(){
+      props.appState.date = this.attributes["aria-label"].value;
+      console.log(props.appState)
+    })
+
+    $('.DayPicker-Day').on('mouseover', function(){
+      this.style.cursor="pointer";
+    })
+  }
+
  render(){
 
   return (
-  
-  <div className="content-block-body no-padding-top">
 
-  <form className="pickerForm" id="dtp-search-single-box">
+  // <div className="content-block-body no-padding-top">
+  <div className = 'container' >
+  <div className="pickerForm" id="dtp-search-single-box">
   <div className="party-size-picker dtp-picker-selector select-native unselected-on-init">
 
    <People appStatePassed={this.props.appState} />
     </div>
 
-   <DayPicker appStatePassed={this.props.appState}/> 
+   <DayPicker appStatePassed={this.props.appState} /> 
     <div className="time-picker dtp-picker-selector select-native unselected-on-init">  
   <a className="select-label dtp-picker-selector-link" tabIndex="-1"></a>  
     <TimeSelect appStatePassed={this.props.appState}/>
@@ -104,14 +108,12 @@ class RestaurantSearch extends React.Component {
   placeholder="Location, Restaurant, or Cuisine" onChange={(e) => {this.props.appState.restaurantName = e.target.value
   }}
   ></input>
-
   <div onClick={this.props.qFn} 
   className = 'submit' value="Find a Table" className="TableSearch" >Find a Table</div>
 
-  </form>
-
+  </div>
   <a className="view-all-link" href="//www.opentable.com/san-francisco-bay-area-restaurant-listings">View all 8404 restaurants in San Francisco</a>
-   {(this.props.appStateQueried) ? <RestaurantDisplay /> : <div></div>}
+   {(this.props.appStateQueried) ? <RestaurantDisplay appState = {this.props.appState}/> : <div></div>}
   </div>
   
   );

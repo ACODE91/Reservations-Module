@@ -18,7 +18,7 @@ handleChange(e) {
 
 render(){ 
     return (
-<select name="Select_0" tabIndex="3" value={this.state.selectValue}
+<select className="Select_0" tabIndex="3" value={this.state.selectValue}
 onChange={this.handleChange.bind(this)}> 
 {times.timesArray.map((opt) => {
 return <option key={opt} value={opt}>{opt}</option>

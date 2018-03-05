@@ -5,7 +5,7 @@ const app = new Koa();
 const db =  require('../seed.js');
 
 app.use(bodyParser());   
-// response 
+
 app.use(async (ctx, next) => {
   ctx.body = ctx.request.body;
 
@@ -14,14 +14,23 @@ app.use(async (ctx, next) => {
   } 
 
   if(ctx.req.method === 'POST') {
-    console.log(ctx.body)
-    ctx.status = 200;  
- 
-    var result = db.query(ctx.body.people, ctx.body.date , ctx.body.time, ctx.body.restaurantName, (data) => {
-      console.log(data)
-    }); 
 
-    ctx.res.end('ok')    
+    ctx.status = 200;  
+
+    // var result = db.query(ctx.body.people, ctx.body.date , ctx.body.time, ctx.body.restaurantName, (info) => {
+    //   console.log(info)
+    //   return info
+    // }); 
+    ctx.respond = false;
+
+    var promise = new Promise(function(resolve, reject){
+      db.query(ctx.body.people, ctx.body.date , ctx.body.time, ctx.body.restaurantName, (info) => {
+          resolve(info)
+        }); 
+    }).then(function(data){
+      ctx.res.end(JSON.stringify(data))
+    });
+
   } 
   
 await next();
