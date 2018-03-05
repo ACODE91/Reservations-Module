@@ -1,8 +1,8 @@
-/* .container {
-  padding-left: 1rem;
-    padding-right: 1rem;
-    position: relative;
-} */
+.container {
+
+    position: absolute;
+    top: 180px
+}
 
 Style Attribute {
   position: relative;
@@ -76,7 +76,7 @@ h2 {
   border-radius: 5px;
   background-color: white;
   padding: 1.5rem;
-  height:1000px;
+  height:500px;
 }
 
 .no-padding-top {
@@ -150,6 +150,7 @@ h2 {
 a {
   text-decoration: none;
   background-color: transparent;
+  position:absolute;
 }
 
 .pickerForm {
@@ -185,17 +186,17 @@ a {
     background-color: #da3743;
     border-color: #b8222d;
     color: #fff;
-    padding-top: .875rem;
+    padding-top: .275rem;
     padding-right: 1.75rem;
-    padding-bottom: .9375rem;
+    padding-bottom: .2375rem;
     padding-left: 1.75rem;
     font-weight: 600;
     float: left;
-    width: 469 px;
-    height: 48 px;
     position: absolute;
     top:-1px;
-    left: 669px
+    left: 669px;
+    width: 120px;
+    height: 49px;
 }
 
 .searchBox {
@@ -282,6 +283,13 @@ option {
   min-width: 4.125rem;
   font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+.view-all-link {
+  left: 0px;
+  top: 250px;
+  width: 800px;
+}
+
 
 .DayPicker {
   top: -15px;

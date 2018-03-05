@@ -22,7 +22,6 @@ render(){
 onChange={this.handleChange.bind(this)}> 
 {times.timesArray.map((opt) => {
 return <option key={opt} value={opt}>{opt}</option>
-
 })}
 </select>
     )        
