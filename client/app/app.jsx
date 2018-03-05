@@ -4,7 +4,7 @@ import style from './style.css';
 import 'react-dates/initialize';
 import axios from 'axios';
 import 'react-dates/initialize';
-import DayPicker from 'react-day-picker';
+import DayPicker, { DateUtils } from 'react-day-picker';
 import RestaurantDisplay from './display.jsx';
 import TimeSelect from './timeselect.jsx';
 import People from './people.jsx';
@@ -12,6 +12,7 @@ import _ from 'underscore';
 import datesArray from '../../data/datedata.js'
 import times from '../../data/timesData.js'
 import $ from "jquery";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +24,8 @@ this.state = {
   date: null,
   time: null,
   restaurantName: '',
-  tablesAvaiable: 0
+  tablesAvaiable: 0,
+  savedE:null
 };
 
 }
@@ -71,23 +73,55 @@ let app = this;
 class RestaurantSearch extends React.Component {
   constructor(props){
     super(props)
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.state = {
+      selectedDay: null,
+    };
   }
 
   componentDidMount() {
   var props = this.props;
+    // $('.DayPicker-Day')
+    // $('.DayPicker-Day').on('click', function(){
+    //   props.appState.date = this.attributes["aria-label"].value;
+    //   this.color = "white";
+    //   this.style['border-color'] = "#da3743";
+    //   // $(this).toggle()
+    //   // console.log(props.appState)
+    // })
 
-    $('.DayPicker-Day').on('click', function(){
-      props.appState.date = this.attributes["aria-label"].value;
-      console.log(props.appState)
-    })
+    // $('.DayPicker-Day').on('mouseover', function(){
+    //   this.style.cursor="pointer";
+    //   // let toggleCover = $("<div>test</div>");
+    //   // $(this).toggle()
+    //   // $(this).toggleClass('selected');
+    // })
+  }
 
-    $('.DayPicker-Day').on('mouseover', function(){
-      this.style.cursor="pointer";
-    })
+  // handleDayClick(day, { sunday, disabled }) {
+  //   // this.props.appState.date = e;
+  //   // console.log(e)
+  //   //capture the exact div that you clicked and save it in the state 
+  //   //so if you click something else it will toggle back to the original form
+  //   console.log(this.props.appState)
+  //   if (sunday) {
+  //     window.alert('Sunday has been clicked');
+  //   }
+  //   if (disabled) {
+  //     window.alert('This day is disabled');
+  //   }
+  //   console.log(day)
+  // }
+  handleDayClick(day, { selected }) {
+    this.props.appState.date = day;
+    console.log(this.props.appState)
+    
+    this.setState({
+      selectedDay: selected ? undefined : day,
+    });
   }
 
  render(){
-
   return (
 
   // <div className="content-block-body no-padding-top">
@@ -98,11 +132,16 @@ class RestaurantSearch extends React.Component {
    <People appStatePassed={this.props.appState} />
     </div>
 
-   <DayPicker appStatePassed={this.props.appState} /> 
+   <DayPicker 
+          className="Selectable"
+          selectedDays={this.state.selectedDay}
+          onDayClick={this.handleDayClick}
+      />
     <div className="time-picker dtp-picker-selector select-native unselected-on-init">  
   <a className="select-label dtp-picker-selector-link" tabIndex="-1"></a>  
     <TimeSelect appStatePassed={this.props.appState}/>
     </div> 
+
 
   <input type="text" className="searchBox" title="Location, Restaurant, or Cuisine" 
   placeholder="Location, Restaurant, or Cuisine" onChange={(e) => {this.props.appState.restaurantName = e.target.value
@@ -114,7 +153,7 @@ class RestaurantSearch extends React.Component {
   </div>
   <a className="view-all-link" href="//www.opentable.com/san-francisco-bay-area-restaurant-listings">View all 8404 restaurants in San Francisco</a>
    {(this.props.appStateQueried) ? <RestaurantDisplay appState = {this.props.appState}/> : <div></div>}
-  </div>
+  </div>  
   
   );
  }
