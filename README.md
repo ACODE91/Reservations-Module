@@ -2,13 +2,6 @@
 
 > Project description
 
-## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-
 ## Table of Contents
 
 1. [Usage](#Usage)
@@ -18,6 +11,13 @@
 ## Usage
 
 > Some usage instructions
+1. npm install all of the dependcies and install mySql onto your machine https://dev.mysql.com/doc/refman/5.7/en/installing.html
+2. In your terminal, type the command "mySql.server start" and log in.
+3. When you're logged in, create a database with the name of your choice.
+4. In your seed.js file, change the 3 strings of line 6 to your database name, 
+mySql username and password respectively.
+3. Uncomment lines 31 - 39 and save.
+4. Run node on seed.js to seed the database.
 
 ## Requirements
 
