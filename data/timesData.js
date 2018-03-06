@@ -59,3 +59,4 @@ var seedData = function(total){
 
 module.exports.seedData = seedData;
 module.exports.timesArray = timesArray;
+module.exports.datesArray = datesArray;

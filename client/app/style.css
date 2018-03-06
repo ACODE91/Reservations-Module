@@ -581,6 +581,8 @@ option {
   
 }
 .Selectable .DayPicker-Day--start {
+  background: #da3743;
+  opacity: 0%;
   /* border-top-left-radius: 50% !important;
   border-bottom-left-radius: 50% !important; */
 }

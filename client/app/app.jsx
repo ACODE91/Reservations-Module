@@ -12,7 +12,7 @@ import _ from 'underscore';
 import datesArray from '../../data/datedata.js'
 import times from '../../data/timesData.js'
 import $ from "jquery";
-
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +28,12 @@ this.state = {
   savedE:null
 };
 
+}
+
+componentDidMount(){
+  this.setState({  people: 1,
+    date: null,
+    time: "12:00 AM"})
 }
 
 findTable() {
@@ -50,7 +56,6 @@ let app = this;
    }).catch(function (error) {
     console.log(error);
    });
-
 }
 
   render () {
@@ -142,8 +147,7 @@ class RestaurantSearch extends React.Component {
     <TimeSelect appStatePassed={this.props.appState}/>
     </div> 
 
-
-  <input type="text" className="searchBox" title="Location, Restaurant, or Cuisine" 
+  <input glyph="glyphicon glyphicon-search" type="text" className="searchBox glyphicon glyphicon-search" title="Location, Restaurant, or Cuisine" 
   placeholder="Location, Restaurant, or Cuisine" onChange={(e) => {this.props.appState.restaurantName = e.target.value
   }}
   ></input>
@@ -154,7 +158,6 @@ class RestaurantSearch extends React.Component {
   <a className="view-all-link" href="//www.opentable.com/san-francisco-bay-area-restaurant-listings">View all 8404 restaurants in San Francisco</a>
    {(this.props.appStateQueried) ? <RestaurantDisplay appState = {this.props.appState}/> : <div></div>}
   </div>  
-  
   );
  }
 }

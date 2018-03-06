@@ -7,7 +7,11 @@ constructor(props){
 }   
 render(){ 
     return (
-    <div className="rest-row-times-btn timeslot">{this.props.appState.time}</div>    
+    <div className="times">    
+    <div className="rest-row-times-btn timeslot">{this.props.appState.time}</div>  
+    <div className="rest-row-times-btn timeslot">{this.props.appState.time}</div> 
+    <div className="rest-row-times-btn timeslot">{this.props.appState.time}</div>     
+    </div>
     )        
 }
 }
