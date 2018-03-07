@@ -29,7 +29,8 @@ export default class People extends React.Component {
 
     return (
       <select
-        name="Select_0"
+        name="Select_0 selectClass"
+        className="peopleSelect dtp-picker-selector"
         value={this.state.selectValue}
         onChange={this.handleChange.bind(this)}
       >
