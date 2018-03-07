@@ -3,6 +3,7 @@ const calendarDatesData = require('./data/datedata.js');
 const timesData = require('./data/timesdata.js');
 const tf2Data = require('./data/2personData.js');
 const Sequelize = require('sequelize');
+
 const db = new Sequelize('opentable', 'root', 'hackreactor', {
   host: 'localhost',
   dialect: 'mysql',
@@ -10,41 +11,37 @@ const db = new Sequelize('opentable', 'root', 'hackreactor', {
     max: 5,
     min: 0,
     acquire: 30000,
-    idle: 10000
-  }
+    idle: 10000,
+  },
 });
 
-var restaurantNameArray = restaurantNameData.restaurantName;
+const restaurantNameArray = restaurantNameData.restaurantName;
 
-var timesArr = timesData.seedData;
+const timesArr = timesData.seedData;
 
 const Reservation = db.define('reservation', {
   time: Sequelize.STRING,
   date: Sequelize.STRING,
-  tablesLeft: Sequelize.INTEGER
+  tablesLeft: Sequelize.INTEGER,
 });
-  
+
 const RestaurantList = db.define('restaurant', {
-  restaurant: Sequelize.STRING
+  restaurant: Sequelize.STRING,
+});
+
+const newLocal = RestaurantList.sync({ force: true }).then(() => RestaurantList.bulkCreate(restaurantNameArray).then(() => {
+  Reservation.belongsTo(RestaurantList);
+  Reservation.sync({ force: true }).then(() => {
+    return Reservation.bulkCreate(timesArr(200));
   });
-  
-  // RestaurantList.sync({force:true}).then(() => {
-  //   return RestaurantList.bulkCreate(restaurantNameArray).then(() => {
-  //     Reservation.belongsTo(RestaurantList);
+}));
 
-  //     Reservation.sync({force:true}).then(() => {
-  //       return Reservation.bulkCreate(timesArr(200));
-  //     });
-  //   });
-  // });
- 
-  var query = function(people, date, time, restaurant, callback) {
-     return RestaurantList.findOne({where: {restaurant: restaurant}}).then( item => {
-      Reservation.findOne({where: {restaurantId: item.dataValues.id}}).then(info => {
-        
-        callback(info.dataValues)
-      })
+const query = function (people, date, time, restaurant, callback) {
+  return RestaurantList.findOne({ where: { restaurant } }).then((item) => {
+    Reservation.findOne({ where: { restaurantId: item.dataValues.id } }).then((info) => {
+      callback(info.dataValues);
     });
-  }
+  });
+};
 
-  module.exports.query = query;
+module.exports.query = query;

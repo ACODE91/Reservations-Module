@@ -1,19 +1,10 @@
 import React from 'react';
-import _ from 'underscore';
-import dates from '../../data/datedata.js'
+import dates from '../../data/datedata';
 
-export default class DateSelect extends React.Component {
-constructor(props){
-    super(props);
-}   
-render(){ 
-    return (
-<select name="Select_0" tabIndex="3"> 
-{dates.datesArray.map((opt) => {
-return <option key={opt}>{opt}</option>
-
-})}
-</select>
-    )        
-}
+export default function DateSelect(props) {
+  return (
+    <select name="Select_0" tabIndex="3">
+      {dates.datesArray.map(opt => <option key={opt}>{opt}</option>)}
+    </select>
+  );
 }

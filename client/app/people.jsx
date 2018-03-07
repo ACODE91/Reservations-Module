@@ -1,40 +1,40 @@
 import React from 'react';
-import _ from 'underscore';
 
 export default class People extends React.Component {
-constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-        selectedValue: ''
-    }
-}   
+      selectedValue: '',
+    };
+  }
 
-handleChange(e) {
-    this.props.appStatePassed.people = e.target.value
- 
-    console.log('app state from people', this.props.appStatePassed)
-}
+  handleChange(e) {
+    this.props.appStatePassed.people = e.target.value;
 
-render(){ 
-var peopleArray = ['1 person'];
+    console.log('app state from people', this.props.appStatePassed);
+  }
 
-var populateArray = function() {
-for(let i = 2; i < 21; i++) {
-    peopleArray.push(i.toString() + ' people');
-}
+  render() {
+    const peopleArray = ['1 person'];
 
-peopleArray.push('Larger Party');
-}
+    const populateArray = function () {
+      for (let i = 2; i < 21; i++) {
+        peopleArray.push(`${i.toString()} people`);
+      }
 
-populateArray();
+      peopleArray.push('Larger Party');
+    };
+
+    populateArray();
 
     return (
-<select name="Select_0" value={this.state.selectValue} 
-onChange={this.handleChange.bind(this)} > 
-{peopleArray.map((opt) => {
-return <option value={opt} key={opt}>{opt}</option>
-})}
-</select>
-    )        
-}
+      <select
+        name="Select_0"
+        value={this.state.selectValue}
+        onChange={this.handleChange.bind(this)}
+      >
+        {peopleArray.map(opt => <option value={opt} key={opt}>{opt}</option>)}
+      </select>
+    );
+  }
 }

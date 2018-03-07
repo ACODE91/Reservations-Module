@@ -1,83 +1,77 @@
-import React from 'react';
-import {render} from 'react-dom';
-import style from './style.css';
 import 'react-dates/initialize';
 import axios from 'axios';
-import 'react-dates/initialize';
+import React from 'react';
+import { render } from 'react-dom';
 import DayPicker, { DateUtils } from 'react-day-picker';
+import style from './style.css';
 import RestaurantDisplay from './display.jsx';
 import TimeSelect from './timeselect.jsx';
 import People from './people.jsx';
-import _ from 'underscore';
-import datesArray from '../../data/datedata.js'
-import times from '../../data/timesData.js'
-import $ from "jquery";
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+
 
 class App extends React.Component {
   constructor(props) {
-  super(props);
+    super(props);
 
-this.state = {
-  queried: false,
-  people: null,
-  date: null,
-  time: null,
-  restaurantName: '',
-  tablesAvaiable: 0,
-  savedE:null
-};
-
-}
-
-componentDidMount(){
-  this.setState({  people: 1,
-    date: null,
-    time: "12:00 AM"})
-}
-
-findTable() {
-let app = this;
-
- axios({
-  method: 'post',
-  url: '/',
-  data: {
-    people: this.state.people,
-    date: this.state.date,
-    time: this.state.time,
-    restaurantName: this.state.restaurantName
+    this.state = {
+      queried: false,
+      people: null,
+      date: null,
+      time: null,
+      restaurantName: '',
+    };
   }
-}).then(function (response) {
-  app.setState({queried: true});
-   console.log(response);
-   app.setState({tablesAvaiable: response.data.tablesLeft});
-   console.log(app.state)
-   }).catch(function (error) {
-    console.log(error);
-   });
+
+  componentDidMount() {
+    this.setState({
+      people: 1,
+      date: null,
+      time: '12:00 AM',
+    });
+  }
+
+  findTable() {
+    const app = this;
+
+    axios({
+      method: 'post',
+      url: '/',
+      data: {
+        people: this.state.people,
+        date: this.state.date,
+        time: this.state.time,
+        restaurantName: this.state.restaurantName,
+      },
+    }).then((response) => {
+      app.setState({ queried: true });
+      console.log(response);
+      app.setState({ tablesAvaiable: response.data.tablesLeft });
+      console.log(app.state);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  render() {
+    return (
+      <div className="content-block-header">
+        <h1 className="page-header-title dtp-header">Peninsula Restaurants</h1>
+        <h2 className="dtp-subheader">Make a free reservation</h2>
+
+        <div id="oc-quick-action-link-container"><span className="oc-quick-action-quick-search">Quick Search:</span><span className="oc-quick-action-choice"> <a href="/s/interim?covers=2&amp;dateTime=2018-03-01%2013%3A30&amp;metroId=4&amp;regionIds=8" className="oc-quick-action-choice-link">Lunch tomorrow</a></span></div>
+        <RestaurantSearch
+          qFn={this.findTable.bind(this)}
+          appStateQueried={this.state.queried}
+          appState={this.state}
+        />
+      </div>
+    );
 }
-
-  render () {
-
-    return ( 
-    <div className="content-block-header">
-    <h1 className="page-header-title dtp-header">Peninsula Restaurants</h1>
-    <h2 className="dtp-subheader">Make a free reservation</h2>
-
-    <div id="oc-quick-action-link-container"><span className="oc-quick-action-quick-search">Quick Search:</span><span className="oc-quick-action-choice"> <a href="/s/interim?covers=2&amp;dateTime=2018-03-01%2013%3A30&amp;metroId=4&amp;regionIds=8" className="oc-quick-action-choice-link">Lunch tomorrow</a></span></div>
-    <RestaurantSearch 
-    qFn={this.findTable.bind(this)}
-    appStateQueried={this.state.queried}
-    appState={this.state}
-    />
-    </div>
-    )}
 }
 
 class RestaurantSearch extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
       selectedDay: null,
@@ -85,7 +79,7 @@ class RestaurantSearch extends React.Component {
   }
 
   componentDidMount() {
-  var props = this.props;
+    const props = this.props;
     // $('.DayPicker-Day')
     // $('.DayPicker-Day').on('click', function(){
     //   props.appState.date = this.attributes["aria-label"].value;
@@ -106,7 +100,7 @@ class RestaurantSearch extends React.Component {
   // handleDayClick(day, { sunday, disabled }) {
   //   // this.props.appState.date = e;
   //   // console.log(e)
-  //   //capture the exact div that you clicked and save it in the state 
+  //   //capture the exact div that you clicked and save it in the state
   //   //so if you click something else it will toggle back to the original form
   //   console.log(this.props.appState)
   //   if (sunday) {
@@ -119,47 +113,58 @@ class RestaurantSearch extends React.Component {
   // }
   handleDayClick(day, { selected }) {
     this.props.appState.date = day;
-    console.log(this.props.appState)
-    
+    console.log(this.props.appState);
+
     this.setState({
       selectedDay: selected ? undefined : day,
     });
   }
 
- render(){
-  return (
+  render() {
+    return (
 
-  // <div className="content-block-body no-padding-top">
-  <div className = 'container' >
-  <div className="pickerForm" id="dtp-search-single-box">
-  <div className="party-size-picker dtp-picker-selector select-native unselected-on-init">
+    // <div className="content-block-body no-padding-top">
+      <div className="container" >
+        <div className="pickerForm" id="dtp-search-single-box">
+          <div className="party-size-picker dtp-picker-selector select-native unselected-on-init">
 
-   <People appStatePassed={this.props.appState} />
-    </div>
+            <People appStatePassed={this.props.appState} />
+          </div>
 
-   <DayPicker 
-          className="Selectable"
-          selectedDays={this.state.selectedDay}
-          onDayClick={this.handleDayClick}
-      />
-    <div className="time-picker dtp-picker-selector select-native unselected-on-init">  
-  <a className="select-label dtp-picker-selector-link" tabIndex="-1"></a>  
-    <TimeSelect appStatePassed={this.props.appState}/>
-    </div> 
+          <DayPicker
+            className="Selectable"
+            selectedDays={this.state.selectedDay}
+            onDayClick={this.handleDayClick}
+          />
+          <div className="time-picker dtp-picker-selector select-native unselected-on-init">
+            <a className="select-label dtp-picker-selector-link" tabIndex="-1" />
+            <TimeSelect appStatePassed={this.props.appState} />
+          </div>
 
-  <input glyph="glyphicon glyphicon-search" type="text" className="searchBox glyphicon glyphicon-search" title="Location, Restaurant, or Cuisine" 
-  placeholder="Location, Restaurant, or Cuisine" onChange={(e) => {this.props.appState.restaurantName = e.target.value
+          <input
+            glyph="glyphicon glyphicon-search"
+            type="text"
+            className="searchBox glyphicon glyphicon-search"
+            title="Location, Restaurant, or Cuisine"
+            placeholder="Location, Restaurant, or Cuisine"
+            onChange={(e) => {
+this.props.appState.restaurantName = e.target.value;
   }}
-  ></input>
-  <div onClick={this.props.qFn} 
-  className = 'submit' value="Find a Table" className="TableSearch" >Find a Table</div>
+          />
+          <div
+            onClick={this.props.qFn}
+            className="submit"
+            value="Find a Table"
+            className="TableSearch"
+          >Find a Table
+          </div>
 
-  </div>
-  <a className="view-all-link" href="//www.opentable.com/san-francisco-bay-area-restaurant-listings">View all 8404 restaurants in San Francisco</a>
-   {(this.props.appStateQueried) ? <RestaurantDisplay appState = {this.props.appState}/> : <div></div>}
-  </div>  
-  );
- }
+        </div>
+        <a className="view-all-link" href="//www.opentable.com/san-francisco-bay-area-restaurant-listings">View all 8404 restaurants in San Francisco</a>
+        {(this.props.appStateQueried) ? <RestaurantDisplay appState={this.props.appState} /> : <div />}
+      </div>
+    );
+  }
 }
 
-render(<App/>, document.getElementById('app'));
+render(<App />, document.getElementById('app'));
