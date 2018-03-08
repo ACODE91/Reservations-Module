@@ -41,8 +41,8 @@ class App extends React.Component {
       },
     }).then((response) => {
       app.setState({ queried: true });
-      console.log(response);
-      console.log(app.state);
+      console.log('response', response);
+      // console.log(app.state);
     }).catch((error) => {
       console.log(error);
     });
@@ -79,10 +79,16 @@ class RestaurantSearch extends React.Component {
   }
 
   handleDayClick(day, { selected }) {
-    console.log('clicked');
-    this.props.appState.date = day;
-    console.log(this.props.appState);
+    var year = JSON.stringify(day).slice(1,5)
+    var month = JSON.stringify(day).slice(6,8);
+    var formatedDay = JSON.stringify(day).slice(9,11)
 
+    if(month[0] === '0'){
+    this.props.appState.date = month[1] + '/' + formatedDay + '/' + year;
+    } else if(month[0] !== '0'){
+      this.props.appState.date = month + '/' + formatedDay + '/' + year;
+    }
+    
     this.setState({
       selectedDay: selected ? undefined : day,
     });
@@ -93,36 +99,26 @@ class RestaurantSearch extends React.Component {
 
     // <div className="content-block-body no-padding-top">
       <div className="buttonsContainer" >
-         
-            <People appStatePassed={this.props.appState} />
-<div className="toLeft">
-        <div className="calendar">
+
+        <People appStatePassed={this.props.appState} />
+        <div className="toLeft">
+  <div className="calendar">
           <DayPickerInput
             className="Selectable"
             placeholder={
-              (new Date()).getFullYear().toString() + '-' + 
-              (new Date()).getMonth().toString() + '-' + (new Date()).getDate().toString()}
+              `${(new Date()).getFullYear().toString()  }-${  
+              (new Date()).getMonth().toString()  }-${  (new Date()).getDate().toString()}`}
             selectedDays={this.state.selectedDay}
             onDayChange={this.handleDayClick}
           />
         </div>
 
-          <div className="time-picker dtp-picker-selector select-native unselected-on-init">
+  <div className="time-picker dtp-picker-selector select-native unselected-on-init">
             <a className="select-label dtp-picker-selector-link aClass" tabIndex="-1" />
             <TimeSelect appStatePassed={this.props.appState} />
           </div>
 
-          <input
-            glyph="glyphicon glyphicon-search"
-            type="text"
-            className="searchBox glyphicon glyphicon-search"
-            title="Location, Restaurant, or Cuisine"
-            placeholder="Location, Restaurant, or Cuisine"
-            onChange={(e) => {
-this.props.appState.restaurantName = e.target.value;
-  }}
-          />
-          <div
+  <div
             onClick={this.props.qFn}
             className="submit"
             value="Find a Table"
