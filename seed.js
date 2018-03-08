@@ -49,7 +49,7 @@ const query = function (date, callback) {
   //     callback(info.dataValues);
   //   });
   // });
-
+ 
   return Reservation.findAll({ where: { date, restaurantId: 2 } }).then((found) => {
     // callback(found);
     console.log('date queried was ', date);
