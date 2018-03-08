@@ -1,4 +1,4 @@
-const syncFn = require('../seed.js')
+const syncFn = require('../seed.js');
 
 const tableFor2Data = [];
 
@@ -42,28 +42,24 @@ const getRandomInt = function (max) {
   return Math.floor(Math.random() * Math.floor(max));
 };
 
-const seedData = function () {
-  let recordsArray = [];
+var recordsArray = [];
 
-  for (let restaurantIdCount = 1; restaurantIdCount < 201; restaurantIdCount++) {
-    let dateIndexCount = 0;
-    for (let dateIndexCount = 0; dateIndexCount < datesArray.length; dateIndexCount++) {
-      for (let i = 0; i < timesArray.length; i++) {
-        let obj = {};
-        obj.time = timesArray[i];
-        obj.date = datesArray[dateIndexCount];
-        obj.tablesLeft = getRandomInt(3);
-        obj.restaurantId = restaurantIdCount;
-        recordsArray.push(obj);
-      }
+const seedData = function () {
+
+  for (let dateIndexCount = 0; dateIndexCount < datesArray.length; dateIndexCount++) {
+    for (let i = 0; i < timesArray.length; i++) {
+      let obj = {};
+      obj.time = timesArray[i];
+      obj.date = datesArray[dateIndexCount];
+      obj.tablesLeft = getRandomInt(2);
+      obj.restaurantId = 1;
+      recordsArray.push(obj);
     }
-    syncFn.syncData(recordsArray);
-    recordsArray = [];
   }
 };
 
-seedData()
-
-module.exports.seedData = seedData;
+seedData();
+ 
+module.exports.seedData = recordsArray;
 module.exports.timesArray = timesArray;
 module.exports.datesArray = datesArray;

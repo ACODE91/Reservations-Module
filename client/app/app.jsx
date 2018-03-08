@@ -35,7 +35,7 @@ class App extends React.Component {
 
     axios({
       method: 'post',
-      url: 'http://localhost:7000/',
+      url: 'http://localhost:7700/',
       data: {
         date: this.state.date,
       },

@@ -15,8 +15,6 @@ const db = new Sequelize('opentable', 'root', 'hackreactor', {
   },
 });
 
-const restaurantNameArray = restaurantNameData.restaurantName;
-
 const seedArr = seedData.seedData;
 
 const Reservation = db.define('reservation', {
@@ -29,12 +27,12 @@ const RestaurantList = db.define('restaurant', {
   restaurant: Sequelize.STRING,
 });
 
-const syncData = function (array) {
-  return RestaurantList.sync({ force: true }).then(() => RestaurantList.bulkCreate(restaurantNameArray).then(() => {
-    Reservation.belongsTo(RestaurantList);
-    Reservation.sync({ force: true }).then(() => Reservation.bulkCreate(array));
-  }));
-};
+
+// RestaurantList.sync({ force: true }).then(() => RestaurantList.bulkCreate([{ restaurant: 'fakeRestaurant' }]).then(() => {
+//   Reservation.belongsTo(RestaurantList);
+//   Reservation.sync({ force: true }).then(() => Reservation.bulkCreate(seedArr));
+// }));
+
 
 const query = function (date, callback) {
   // console.log('from query',date)
@@ -60,4 +58,4 @@ const query = function (date, callback) {
 };
 
 module.exports.query = query;
-module.exports.syncData = syncData;
+// module.exports.syncData = syncData;
