@@ -37,10 +37,7 @@ class App extends React.Component {
       method: 'post',
       url: 'http://localhost:7000/',
       data: {
-        people: this.state.people,
         date: this.state.date,
-        time: this.state.time,
-        restaurantName: this.state.restaurantName,
       },
     }).then((response) => {
       app.setState({ queried: true });
