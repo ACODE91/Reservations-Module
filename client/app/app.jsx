@@ -35,7 +35,7 @@ class App extends React.Component {
 
     axios({
       method: 'post',
-      url: 'http://localhost:7070/',
+      url: 'http://localhost:7000/',
       data: {
         people: this.state.people,
         date: this.state.date,
@@ -102,6 +102,9 @@ class RestaurantSearch extends React.Component {
         <div className="calendar">
           <DayPickerInput
             className="Selectable"
+            placeholder={
+              (new Date()).getFullYear().toString() + '-' + 
+              (new Date()).getMonth().toString() + '-' + (new Date()).getDate().toString()}
             selectedDays={this.state.selectedDay}
             onDayChange={this.handleDayClick}
           />

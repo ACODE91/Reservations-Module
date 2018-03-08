@@ -32,7 +32,8 @@ app.use(async (ctx, next) => {
 
   await next();
 });
+
 app.use(serve('../client/public'));
 
-app.listen(7070);
-console.log('listening on port 7070');
+app.listen(7000);
+console.log('listening on port 7000');

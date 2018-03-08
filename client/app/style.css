@@ -3,16 +3,21 @@
     top: 180px;
 }
 .peopleSelect {
+display:block;
 position: absolute;  
-width: 117.52px;  
+width: 117.499996px;  
 height: 49.2px;
+text-align: center;
 background-color: #fff;
 -webkit-appearance: none;
 -webkit-border-radius: 0;
 top: -1px;
 font-family:"source-sans-pro",sans-serif;
 font-size: .875rem;
+border-color: rgb(166, 166, 166);
+border-style: solid;
 }
+
 .calendar input{
   width: 183px;
   height: 49px;
@@ -102,7 +107,7 @@ font-size: .875rem;
 }
 
 .dtp-picker-selector-link:after {
-  /* font-family: 'icons';
+  font-family: 'icons';
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -115,17 +120,11 @@ font-size: .875rem;
   position: absolute;
   right: 50%;
   margin-right: -.5rem;
-  bottom: 0; */
+  bottom: 0;
 }
 
 *, *:before, *:after {
   box-sizing: border-box;
-}
-
-#dtp-search-single-box, .dtp-picker-selector {
-  /* font-size: .875rem; */
-  /* font-weight: 400;
-  line-height: 1.43; */
 }
 
 .content-block-body 
@@ -154,15 +153,10 @@ font-size: .875rem;
   position:absolute;
 }
 
-.pickerForm {
-
-  position: relative
-}
-
 .dtp-picker-selector select {
+  
   -webkit-appearance: none;
   -webkit-border-radius: 0;
-  color: #333;
   background-color: #fff;
 }
 
@@ -172,7 +166,6 @@ font-size: .875rem;
     color: #FFF;
     font-size: 1rem;
     font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
-    border-style: solid;
     border-width: 0;
     cursor: pointer;
     text-align: center;
@@ -236,7 +229,6 @@ font-size: .875rem;
     font: inherit;
     margin: 0;
     border-width: 1px;
-    border-style: solid;
     border-image: initial;
     align-items: center;
     white-space: pre;
@@ -248,7 +240,6 @@ font-size: .875rem;
     text-indent: 0px;
     text-shadow: none;
     display: inline-block;
-    text-align: start;
     -webkit-writing-mode: horizontal-tb;
     font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
@@ -267,7 +258,6 @@ option {
   color: #fff;
   margin-right: .5rem;
   line-height: 1.2rem;
-  text-align: center;
   font-size: .875rem;
   position: absolute;
   background: #DA3743;
@@ -292,6 +282,9 @@ option {
   }
   
   .timeSelect {
+    border-color: rgb(166, 166, 166);
+    border-style: solid;
+    text-align: center;
     font-size: .875rem;
     float:left;
     position: absolute;
@@ -526,6 +519,7 @@ option {
   .DayPickerInput {
     display: inline-block;
     position: absolute;
+
   }
   
   .DayPickerInput-OverlayWrapper {
