@@ -19,6 +19,7 @@ class App extends React.Component {
       date: null,
       time: null,
       restaurantName: '',
+      timesAvailable: [],
     };
   }
 
@@ -40,9 +41,11 @@ class App extends React.Component {
         date: this.state.date,
       },
     }).then((response) => {
-      app.setState({ queried: true });
-      console.log('response', response);
-      // console.log(app.state);
+      console.log('response data', response.data);
+      // app.state.timesAvailable = response.data;
+      let timesArray = response.data;
+      app.setState({queried: true, timesAvailable: timesArray});
+      console.log(app.state)
     }).catch((error) => {
       console.log(error);
     });
@@ -51,7 +54,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="content-block-header">
-        <h1 className="page-header-title dtp-header">Peninsula Restaurants</h1>
         <h2 className="dtp-subheader">Make a free reservation</h2>
 
         <div id="oc-quick-action-link-container"><span className="oc-quick-action-quick-search">Quick Search:</span><span className="oc-quick-action-choice"> <a href="/s/interim?covers=2&amp;dateTime=2018-03-01%2013%3A30&amp;metroId=4&amp;regionIds=8" className="oc-quick-action-choice-link">Lunch tomorrow</a></span></div>
@@ -82,6 +84,10 @@ class RestaurantSearch extends React.Component {
     var year = JSON.stringify(day).slice(1,5)
     var month = JSON.stringify(day).slice(6,8);
     var formatedDay = JSON.stringify(day).slice(9,11)
+
+    if(formatedDay[0] === '0') {
+      formatedDay = formatedDay.slice(1)
+    }
 
     if(month[0] === '0'){
     this.props.appState.date = month[1] + '/' + formatedDay + '/' + year;

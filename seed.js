@@ -5,7 +5,7 @@ const tf2Data = require('./data/2personData.js');
 const Sequelize = require('sequelize');
 
 const db = new Sequelize('opentable', 'root', 'hackreactor', {
-  host: 'localhost',
+  host: 'localhost', //might not always be local host
   dialect: 'mysql',
   pool: {
     max: 5,
@@ -50,10 +50,15 @@ const query = function (date, callback) {
   //   });
   // });
  
-  return Reservation.findAll({ where: { date, restaurantId: 2 } }).then((found) => {
-    // callback(found);
-    console.log('date queried was ', date);
-    console.log(found);
+  return Reservation.findAll({ where: { date, restaurantId: 1 } }).then((found) => {
+    var tablesAvailableArr = [];
+    for(let i = 0; i < found.length; i++) {
+      if(found[i].dataValues.tablesLeft > 0) {
+        tablesAvailableArr.push(found[i].dataValues.time);
+      }
+    }
+
+    callback(tablesAvailableArr)
   });
 };
 

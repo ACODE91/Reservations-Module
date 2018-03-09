@@ -18,7 +18,7 @@ app.use(async (ctx, next) => {
   }
   
   if (ctx.req.method === 'POST') {
-    ctx.status = 200;
+    ctx.status = 201;
    
     ctx.respond = false;
         
@@ -28,8 +28,8 @@ app.use(async (ctx, next) => {
         resolve(info);  
       });  
     })).then((data) => { 
-      let rawDate = JSON.stringify(data)
-       ctx.res.end('ok');
+      console.log('this was data', data)
+       ctx.res.end(JSON.stringify(data));
     }); 
   } 
  
