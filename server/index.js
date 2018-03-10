@@ -1,4 +1,3 @@
-// const serve = require('koa-static');
 const serve = require('koa-static-server');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
@@ -8,27 +7,21 @@ const db = require('../seed.js');
 
 app.use(bodyParser());
   
-app.use(cors()); 
-
-app.use(async (ctx, next) => { 
+app.use(cors());  
+ 
+app.use(async (ctx, next) => {  
   ctx.body = ctx.request.body;
 
-  if (ctx.req.method === 'GET') {
-    ctx.status = 200; 
-  }
-  
   if (ctx.req.method === 'POST') {
     ctx.status = 201;
    
     ctx.respond = false;
         
     const promise = new Promise(((resolve, reject) => {
-      // console.log(ctx.body.date)
       db.query(ctx.body.date, (info) => {
         resolve(info);  
       });  
     })).then((data) => { 
-      console.log('this was data', data)
        ctx.res.end(JSON.stringify(data));
     }); 
   } 

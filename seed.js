@@ -1,4 +1,3 @@
-const restaurantNameData = require('./data/restaurantNameData.js');
 const calendarDatesData = require('./data/datedata.js');
 const seedData = require('./data/dataForSeed');
 const tf2Data = require('./data/2personData.js');

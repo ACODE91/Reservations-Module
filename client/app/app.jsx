@@ -44,6 +44,7 @@ class App extends React.Component {
       console.log('response data', response.data);
       // app.state.timesAvailable = response.data;
       let timesArray = response.data;
+      console.log(response)
       app.setState({queried: true, timesAvailable: timesArray});
       console.log(app.state)
     }).catch((error) => {
