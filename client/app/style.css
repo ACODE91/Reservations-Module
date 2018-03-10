@@ -1,11 +1,12 @@
 .buttonsContainer {
-    position: absolute;
-    top: 180px;
+  height: 390px;
+  width: 290px;
+  background-color: white;
+  display:flex;
+  flex-direction: column;
 }
 .peopleSelect {
-display:block;
-position: absolute;  
-width: 117.499996px;  
+width: 300.499996px;  
 height: 49.2px;
 text-align: center;
 background-color: #fff;
@@ -14,26 +15,43 @@ background-color: #fff;
 top: -1px;
 font-family:"source-sans-pro",sans-serif;
 font-size: .875rem;
-border-color: rgb(166, 166, 166);
-border-style: solid;
+border: none;
 }
 
+.peopleDiv {
+  width: 300px;
+  height: 80px;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  background-color: white;
+}
+.calendar {
+height: 70px;
+display:flex;
+flex-direction: column; 
+align-items: flex-start;
+width: 300px;
+}
+.calendar p {
+  margin-top: -1px;
+  /* margin-left: -250px; */
+}
 .calendar input{
-  width: 183px;
-  height: 49px;
-  left: 67px;
-  top: -1px;
-  position: absolute;
+  width: 144px;
+  height: 40px;
+  margin-top: 25px;
+  /* display:flex;
+  flex-direction: column;  */
 }
 
-.toLeft {
-  position: absolute;
-  left: 50px;
-}
-
-
-*, *:before, *:after {
-  box-sizing: border-box;
+.calendarAndDate {
+  height: 80px;
+  width: 300px;
+  display: flex;
+  justify-content: flex-start;
+  background-color: white;
 }
 
 .page-header-title {
@@ -50,16 +68,20 @@ border-style: solid;
 }
 
 .dtp-subheader {
-  font-size: 3rem;
-  font-weight: 700;
+  margin-top: 10px;
+  height: 40px;
+  width: 290px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
   line-height: 1.17;
   text-shadow: none;
   color: #333;
-  margin: 0;
+  text-align: center;
   padding: 0;
-  display: block;
   font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-style: normal;
+  border-bottom: 1px solid #e1e1e1;
 }
 
 /* #oc-quick-action-link-container {
@@ -67,7 +89,7 @@ border-style: solid;
   position: absolute; 
 } */
 
-#oc-quick-action-link-container .oc-quick-action-quick-search {
+/* #oc-quick-action-link-container .oc-quick-action-quick-search {
   position: absolute;
   left: 20px;
   margin: 20px 20px 15px 10px;
@@ -77,9 +99,9 @@ border-style: solid;
   opacity: 100%;
   font-size: 14px;
   font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
+} */
 
-#oc-quick-action-link-container .oc-quick-action-choice-link {
+/* #oc-quick-action-link-container .oc-quick-action-choice-link {
   color: #237B98;
   opacity: 100%;
   font-size: 16px;
@@ -87,14 +109,19 @@ border-style: solid;
   position: absolute;
   left: 152px;
   top: 133px;
-}
+} */
 
 .content-block-header {
   border-radius: 5px;
   background-color: white;
-  padding: 1.5rem;
-  height:500px;
-  position: relative;
+  padding: 1rem;
+  height:352px;
+  width: 322px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .no-padding-top {
@@ -117,15 +144,12 @@ border-style: solid;
   -moz-osx-font-smoothing: grayscale;
   color: #999;
   font-size: 1.3125rem;
-  position: absolute;
+  /* position: absolute; */
   right: 50%;
   margin-right: -.5rem;
   bottom: 0;
 }
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
 
 .content-block-body 
 .container {
@@ -161,30 +185,26 @@ border-style: solid;
 }
 
 .TableSearch {
-    margin: 0 !important;
+    margin-top: 100px;
     background-color: #b8222d;
     color: #FFF;
     font-size: 1rem;
     font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
     border-width: 0;
     cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     outline: none;
-    display: inline-block;
     background-color: #da3743;
     border-color: #b8222d;
     color: #fff;
-    padding-top: 0px;
-    padding-right: 0.5rem;
-    padding-bottom: 0px;
-    padding-left: 0.5rem;
+
     font-weight: 600;
-    float: left;
-    position: absolute;
-    top:-1px;
-    left: 669px;
-    width: 144.63px;
-    height: 48px;
+    width: 290px;
+    height: 50px;
+    align-self: center;
 }
 
 .searchBox {
@@ -216,7 +236,6 @@ border-style: solid;
     cursor: text;
     unicode-bidi: -webkit-isolate;
     background-color: white;
-    box-sizing: border-box;
     direction: ltr;
     width: 300px;
     height: 49px;
@@ -253,20 +272,35 @@ option {
 }
 
 .rest-row-times-btn {
-  border-radius: 3px;
   border: 1px solid #DA3743;
   color: #fff;
   margin-right: .5rem;
   line-height: 1.2rem;
   font-size: .875rem;
-  position: absolute;
   background: #DA3743;
   margin-bottom: .5rem;
   white-space: nowrap;
-  min-width: 4.125rem;
   font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  top: 277px;
-  left: 0px;
+  margin-top: 10px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.times {
+width: 280px;
+height: 80px;
+display:flex;
+}
+
+.allTimes {
+  height: 100px;
+  width: 280px;
+  background-color: white;
+  display:flex;
+  justify-content: center;
+  /* margin-top: 100px; */
+  align-items: flex-start;
 }
 
 .view-all-link {
@@ -276,22 +310,17 @@ option {
 }
 
 .DayPicker {
-  top: -15px;
-  position: absolute;
-  left: 50px;
+
   }
   
   .timeSelect {
-    border-color: rgb(166, 166, 166);
-    border-style: solid;
+    background-color: white;
+    border-color: none;
+    border-style: none;
     text-align: center;
     font-size: .875rem;
-    float:left;
-    position: absolute;
-    top:-0.8px;
-    left: 250px;
-    width: 118.88px;
-    height: 49px;
+    width: 144px;
+    height: 40px;
   }
 
   .DayPicker-wrapper {
@@ -536,8 +565,9 @@ option {
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
   
-  .dtp-picker-selector.time-picker {
+  .time-picker {
    /* border-top-right-radius: 3px; */
+   /* margin-left: 150px; */
 }
 
 .dtp-picker-selector.party-size-picker {

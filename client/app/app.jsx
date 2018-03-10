@@ -54,9 +54,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="content-block-header">
-        <h2 className="dtp-subheader">Make a free reservation</h2>
-
-        <div id="oc-quick-action-link-container"><span className="oc-quick-action-quick-search">Quick Search:</span><span className="oc-quick-action-choice"> <a href="/s/interim?covers=2&amp;dateTime=2018-03-01%2013%3A30&amp;metroId=4&amp;regionIds=8" className="oc-quick-action-choice-link">Lunch tomorrow</a></span></div>
+        <div className="dtp-subheader">Make a free reservation</div>
         <RestaurantSearch
           qFn={this.findTable.bind(this)}
           appStateQueried={this.state.queried}
@@ -105,10 +103,13 @@ class RestaurantSearch extends React.Component {
 
     // <div className="content-block-body no-padding-top">
       <div className="buttonsContainer" >
-
+        <div className="peopleDiv">
+        Party Size
         <People appStatePassed={this.props.appState} />
-        <div className="toLeft">
-  <div className="calendar">
+        </div>
+<div className= "calendarAndDate" >
+  <div className="calendar"> 
+         <p> Date </p>
           <DayPickerInput
             className="Selectable"
             placeholder={
@@ -117,23 +118,27 @@ class RestaurantSearch extends React.Component {
             selectedDays={this.state.selectedDay}
             onDayChange={this.handleDayClick}
           />
-        </div>
-
-  <div className="time-picker dtp-picker-selector select-native unselected-on-init">
-            <a className="select-label dtp-picker-selector-link aClass" tabIndex="-1" />
-            <TimeSelect appStatePassed={this.props.appState} />
           </div>
+          <div className="time-picker">
+            Time
+            <TimeSelect appStatePassed={this.props.appState} />
+          
+          </div>
+ </div>
+
+
 
   <div
             onClick={this.props.qFn}
             className="submit"
             value="Find a Table"
-            className="TableSearch"
+            className="TableSearch" 
           >Find a Table
-          </div>
+       
 </div>
-        <a className="view-all-link" href="//www.opentable.com/san-francisco-bay-area-restaurant-listings">View all 8404 restaurants in San Francisco</a>
+                <div className="allTimes">
         {(this.props.appStateQueried) ? <RestaurantDisplay appState={this.props.appState} /> : <div />}
+                </div>
       </div>
     );
   }
