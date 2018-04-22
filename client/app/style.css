@@ -17,9 +17,14 @@ top: -1px;
 font-family:"source-sans-pro",sans-serif;
 font-size: .875rem;
 border: none;
+cursor: pointer;
 }
 
-.peopleDiv {
+.peopleSelect:hover {
+  border-bottom: 2px solid #d83a47;
+}
+
+.party {
   width: 300px;
   height: 80px;
   border-left: none;
@@ -68,8 +73,9 @@ width: 300px;
   font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
-.dtp-subheader {
+.reservation-header {
   margin-top: 10px;
+  font-weight: bold;
   height: 40px;
   width: 290px;
   display: flex;
@@ -80,10 +86,10 @@ width: 300px;
   color: #333;
   text-align: center;
   padding: 0;
-  font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 1.17em;
+  font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   font-style: normal;
-  border-bottom: 1px solid #e1e1e1;
-
+  border-bottom: 1px solid #d8d9db;
 }
 
 /* #oc-quick-action-link-container {
@@ -309,10 +315,6 @@ display:flex;
   top: 250px;
   width: 800px;
 }
-
-.DayPicker {
-
-  }
   
   .timeSelect {
     background-color: white;
@@ -549,7 +551,7 @@ display:flex;
   .DayPickerInput {
     display: inline-block;
     position: absolute;
-
+    cursor: pointer;
   }
   
   .DayPickerInput-OverlayWrapper {

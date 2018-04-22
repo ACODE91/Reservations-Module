@@ -11,8 +11,6 @@ constructor(props){
 
 handleChange(e) {
     this.props.appStatePassed.time = e.target.value
- 
-    // console.log('app state, changed by time select', this.props.appStatePassed)
 }
 
 render(){ 

@@ -10,8 +10,6 @@ export default class People extends React.Component {
 
   handleChange(e) {
     this.props.appStatePassed.people = e.target.value;
-
-    console.log('app state from people', this.props.appStatePassed);
   }
 
   render() {
@@ -19,7 +17,7 @@ export default class People extends React.Component {
 
     const populateArray = function () {
       for (let i = 2; i < 21; i++) {
-        peopleArray.push(`${i.toString()} people`);
+        peopleArray.push(`For ${i.toString()}`);
       }
 
       peopleArray.push('Larger Party');
