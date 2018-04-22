@@ -13,7 +13,7 @@ export default class People extends React.Component {
   }
 
   render() {
-    const peopleArray = ['1 person'];
+    const peopleArray = ['For 1'];
 
     const populateArray = function () {
       for (let i = 2; i < 21; i++) {
