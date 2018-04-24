@@ -45,21 +45,19 @@ export default class RestaurantSearch extends React.Component {
             <People appStatePassed={this.props.appState} />
           </div>
           <div className="calendarAndDate" >
+             
             <div className="calendar">
-              <p> Date </p>
+            <span>Date</span>
               <DayPickerInput
                 className="Selectable"
-                placeholder={
-                `${(new Date()).getFullYear().toString()}-${
-                (new Date()).getMonth().toString()}-${(new Date()).getDate().toString()}`}
+                placeholder="Today"
                 selectedDays={this.state.selectedDay}
                 onDayChange={this.handleDayClick}
               />
             </div>
+            <span>Time</span>
             <div className="time-picker">
-              Time
               <TimeSelect appStatePassed={this.props.appState} />
-
             </div>
           </div>
 

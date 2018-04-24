@@ -9,7 +9,6 @@ import RestaurantSearch from './restaurantSearch.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       queried: false,
       people: null,

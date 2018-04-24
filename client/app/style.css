@@ -13,12 +13,13 @@ height: 40px;
 text-align: center;
 background-color: #fff;
 -webkit-appearance: none;
--webkit-border-radius: 0;
 top: -1px;
 font-family:"source-sans-pro",sans-serif;
 font-size: .875rem;
+font-weight: 345;
 border: none;
 cursor: pointer;
+border-radius: 0%;
 outline: none;
 margin-top: 1px;
 border-bottom: 1px solid #e1e1e1;
@@ -37,7 +38,6 @@ border-bottom: 1px solid #e1e1e1;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 0;
 }
 .peopleSelect:hover {
   border-bottom: 2px solid #d83a47;
@@ -49,25 +49,10 @@ border-bottom: 1px solid #e1e1e1;
   border-left: none;
   border-right: none;
   background-color: white;
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 14px;
-  font-weight: 500;
+  font-weight: 530;
   margin: -4px 0px 0px 0px;
-}
-.calendar {
-height: 70px;
-display:flex;
-flex-direction: column; 
-align-items: flex-start;
-width: 300px;
-}
-.calendar p {
-  margin-top: -1px;
-}
-.calendar input{
-  width: 144px;
-  height: 40px;
-  margin-top: 25px;
 }
 
 .calendarAndDate {
@@ -77,7 +62,8 @@ width: 300px;
   justify-content: flex-start;
   background-color: white;
   margin-top: -16px;
-  background-color: pink;
+  font-size: 13.5px;
+  font-weight: 530;
 }
 
 .page-header-title {
@@ -149,6 +135,7 @@ width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border-radius: 3px;
   justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -206,7 +193,6 @@ width: 300px;
 .dtp-picker-selector select {
   
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
   background-color: #fff;
 }
 
@@ -220,6 +206,7 @@ width: 300px;
     cursor: pointer;
     display:flex;
     align-items: center;
+    border-radius: 2px;
     justify-content: center;
     text-align: center;
     outline: none;
@@ -227,7 +214,7 @@ width: 300px;
     border-color: #b8222d;
     color: #fff;
     border: 30px;
-    font-weight: 600;
+    font-weight: 450;
     width: 290px;
     height: 50px;
     align-self: center;
@@ -270,25 +257,6 @@ width: 300px;
     left: 369px;
 }
 
-.selectClass {
-    font: inherit;
-    margin: 0;
-    border-width: 1px;
-    border-image: initial;
-    align-items: center;
-    white-space: pre;
-    -webkit-rtl-ordering: logical;
-    text-rendering: auto;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    -webkit-writing-mode: horizontal-tb;
-    font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
-}
-
 option {
     font-weight: normal;
     display: block;
@@ -301,16 +269,18 @@ option {
   border: 1px solid #DA3743;
   color: #fff;
   margin-right: .5rem;
-  line-height: 1.2rem;
+  border-radius: 2px;
+  align-items: center;
+  line-height: 2.2rem;
   font-size: .875rem;
   background: #DA3743;
   margin-bottom: .5rem;
-  white-space: nowrap;
+  text-align: center;
   font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
   margin-top: 10px;
-  height: 20px;
-  padding: 5px;
-
+  height: 34px;
+  width: 81px;
+  cursor: pointer;
 }
 
 .times {
@@ -335,17 +305,27 @@ display:flex;
   width: 800px;
 }
   
-  .timeSelect {
-    background-color: white;
-    border-color: none;
+  select.timeSelect {
+    display: block;
+    background-color: purple;
     border-style: none;
+    border-radius: 0%;
     text-align: center;
     font-size: .875rem;
-    width: 144px;
-    height: 40px;
+    width: 139px;
+    height: 43px;
     outline: none;
     border-bottom: 1px solid #d8d9db;
     margin-top: 13px;
+    margin: 0;      
+    margin-left: 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    font-weight: 345;
   }
 
   .timeSelect:hover {
@@ -416,10 +396,6 @@ display:flex;
   
   .DayPicker-NavButton:hover {
     opacity: 0.8;
-  }
-
-  .DayPicker {
-
   }
   
   .DayPicker-NavButton--prev {
@@ -532,10 +508,10 @@ display:flex;
   
   /* Default modifiers */
   
-  /* .DayPicker-Day--today {
+  .DayPicker-Day--today {
     color: #d0021b;
     font-weight: 700;
-  } */
+  }
   
   .DayPicker-Day--outside {
     cursor: default;
@@ -578,14 +554,18 @@ display:flex;
   /* DayPickerInput */
 
 
-  .DayPickerInput {
-    width: 144px;
-    
+  .DayPickerInput input{
+    width: 139px;
+    height: 40px;
+    font-weight: 345;
     display: inline-block;
-    position: absolute;
     cursor: pointer;
+    border: none;
     outline: none;
     border-bottom: 1px solid #d8d9db;
+    text-align: left;
+    color: black;
+    font-size: .875rem;
   }
 
   .DayPickerInput:hover {
@@ -596,12 +576,12 @@ display:flex;
     position: relative;
   }
   
-  
   .DayPickerInput-Overlay {
     left: 0;
     z-index: 2;
     position: absolute;
     background-color: white;
+    color: black;
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }

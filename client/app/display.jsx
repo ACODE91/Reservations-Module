@@ -67,7 +67,9 @@ export default function RestaurantDisplay(props) {
     <div className="times">
       {
         filterArray.map((matchedTime) => {
-          return <div key={matchedTime} className="rest-row-times-btn timeslot">{matchedTime}</div>
+          return <div key={matchedTime} className="rest-row-times-btn timeslot">
+          <span>{matchedTime}</span>
+          </div>
         }
         )
       }
