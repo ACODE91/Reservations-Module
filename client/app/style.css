@@ -9,7 +9,7 @@
 }
 .peopleSelect {
 width: 300.499996px;  
-height: 49.2px;
+height: 40px;
 text-align: center;
 background-color: #fff;
 -webkit-appearance: none;
@@ -20,8 +20,25 @@ font-size: .875rem;
 border: none;
 cursor: pointer;
 outline: none;
+margin-top: 1px;
+border-bottom: 1px solid #e1e1e1;
 }
 
+.peopleSelect:focus {
+  cursor: pointer; 
+    font-family: inherit; 
+    background-color: #fff;
+     font-size: .875rem; 
+     display: block; 
+     outline: none; 
+     border: none; 
+     width: 100%;
+    height: 35px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
 .peopleSelect:hover {
   border-bottom: 2px solid #d83a47;
 }
@@ -31,12 +48,11 @@ outline: none;
   height: 80px;
   border-left: none;
   border-right: none;
-  border-top: 1px solid #e1e1e1;
-  border-bottom: 1px solid #e1e1e1;
   background-color: white;
   font-size: 14px;
   line-height: 14px;
   font-weight: 500;
+  margin: -4px 0px 0px 0px;
 }
 .calendar {
 height: 70px;
@@ -47,14 +63,11 @@ width: 300px;
 }
 .calendar p {
   margin-top: -1px;
-  /* margin-left: -250px; */
 }
 .calendar input{
   width: 144px;
   height: 40px;
   margin-top: 25px;
-  /* display:flex;
-  flex-direction: column;  */
 }
 
 .calendarAndDate {
@@ -63,6 +76,8 @@ width: 300px;
   display: flex;
   justify-content: flex-start;
   background-color: white;
+  margin-top: -16px;
+  background-color: pink;
 }
 
 .page-header-title {
@@ -79,7 +94,7 @@ width: 300px;
 }
 
 .reservation-header {
-  margin-top: 10px;
+  margin-top: -5px;
   font-weight: bold;
   height: 40px;
   width: 290px;
@@ -95,7 +110,8 @@ width: 300px;
   line-height: 28px;
   font-family: BrandonText,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   font-style: normal;
-  border-bottom: 1px solid #d8d9db;
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 7px;
 }
 
 /* #oc-quick-action-link-container {
@@ -129,7 +145,7 @@ width: 300px;
   background-color: white;
   padding: 1rem;
   height:352px;
-  width: 322px;
+  width: 295px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -137,9 +153,6 @@ width: 300px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.no-padding-top {
-  padding-top: 0!important;
-}
 
 .dtp-picker:before, .dtp-picker:after {
   content: " ";
@@ -198,9 +211,9 @@ width: 300px;
 }
 
 .TableSearch {
-    margin-top: 100px;
     background-color: #b8222d;
     color: #FFF;
+    margin-top: 15px;
     font-size: 1rem;
     font-family: BrandonText,Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif;
     border-width: 0;
@@ -213,7 +226,7 @@ width: 300px;
     background-color: #da3743;
     border-color: #b8222d;
     color: #fff;
-
+    border: 30px;
     font-weight: 600;
     width: 290px;
     height: 50px;
@@ -332,6 +345,7 @@ display:flex;
     height: 40px;
     outline: none;
     border-bottom: 1px solid #d8d9db;
+    margin-top: 13px;
   }
 
   .timeSelect:hover {
@@ -402,6 +416,10 @@ display:flex;
   
   .DayPicker-NavButton:hover {
     opacity: 0.8;
+  }
+
+  .DayPicker {
+
   }
   
   .DayPicker-NavButton--prev {
@@ -508,7 +526,7 @@ display:flex;
     -webkit-box-shadow: none;
             box-shadow: none;
     cursor: pointer;
-    color: #4a90e2;
+    color: pink;
     font-size: 0.875em;
   }
   
@@ -561,6 +579,8 @@ display:flex;
 
 
   .DayPickerInput {
+    width: 144px;
+    
     display: inline-block;
     position: absolute;
     cursor: pointer;
@@ -585,27 +605,6 @@ display:flex;
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   }
-  
-  .time-picker {
-   /* border-top-right-radius: 3px; */
-   /* margin-left: 150px; */
-}
-
-.dtp-picker-selector.party-size-picker {
-  /* border-right: 0;
-  border-top-left-radius: 3px;
-  border-color: rgb(166, 166, 166); */
-}
-
-.dtp-picker-selector, .dtp-picker-search-container {
-    /* transition: border-color ease-in-out 0.15s; */
-}
-
-#dtp-search-single-box, .dtp-picker-selector {
-  /* font-size: .875rem;
-  font-weight: 400;
-  line-height: 1.43; */
-}
 
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
   background: #da3743;

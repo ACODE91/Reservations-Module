@@ -4,7 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import style from './style.css';
-import RestaurantSearch from './restaurantSearch.jsx'
+import RestaurantSearch from './restaurantSearch.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -48,7 +48,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="content-block-header">
-        <div className="reservation-header">Make a reservation</div>
+        <h1 className="reservation-header">
+         Make a reservation
+        </h1>
         <RestaurantSearch
           qFn={this.findTable.bind(this)}
           appStateQueried={this.state.queried}
