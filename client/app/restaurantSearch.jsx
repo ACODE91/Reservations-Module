@@ -55,8 +55,8 @@ export default class RestaurantSearch extends React.Component {
                 onDayChange={this.handleDayClick}
               />
             </div>
-            <span>Time</span>
             <div className="time-picker">
+            <div>Time</div>
               <TimeSelect appStatePassed={this.props.appState} />
             </div>
           </div>

@@ -40,7 +40,7 @@ export default class TimeSelect extends React.Component {
       >
 
         {timesArray.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-            </select>
+      </select>
     );
   }
 }
