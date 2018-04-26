@@ -4,7 +4,7 @@ const tf2Data = require('./data/2personData.js');
 const Sequelize = require('sequelize');
 
 const db = new Sequelize('opentable', 'root', 'hackreactor', {
-  host: 'localhost', //might not always be local host
+  host: 'localhost', 
   dialect: 'mysql',
   pool: {
     max: 5,
@@ -26,40 +26,8 @@ const RestaurantList = db.define('restaurant', {
   restaurant: Sequelize.STRING,
 });
 
+RestaurantList.sync({ force: true }).then(() => RestaurantList.bulkCreate([{ restaurant: 'fakeRestaurant' }]).then(() => {
+  Reservation.belongsTo(RestaurantList);
+  Reservation.sync({ force: true }).then(() => Reservation.bulkCreate(seedArr));
+}));
 
-// RestaurantList.sync({ force: true }).then(() => RestaurantList.bulkCreate([{ restaurant: 'fakeRestaurant' }]).then(() => {
-//   Reservation.belongsTo(RestaurantList);
-//   Reservation.sync({ force: true }).then(() => Reservation.bulkCreate(seedArr));
-// }));
-
-
-const query = function (date, callback) {
-  // console.log('from query',date)
-  // return Reservation.findOne({ where: { date: item.dataValues.date } }).then((info) => {
-  //   callback(info.dataValues);
-  // });
-
-  // return RestaurantList.findOne({ where: { id: 1 } }).then((item) => {
-  //   console.log('item -->', item)
-  //   Reservation.findAll({ where: { restaurantId: item.dataValues.id } }).then((info) => {
-  //     for(let i = 0; i < info.length; i++){
-  //       console.log(info[i].dataValues);
-  //     }
-  //     callback(info.dataValues);
-  //   });
-  // });
- 
-  return Reservation.findAll({ where: { date, restaurantId: 1 } }).then((found) => {
-    var tablesAvailableArr = [];
-    for(let i = 0; i < found.length; i++) {
-      if(found[i].dataValues.tablesLeft > 0) {
-        tablesAvailableArr.push(found[i].dataValues.time);
-      }
-    }
-
-    callback(tablesAvailableArr)
-  });
-};
-
-module.exports.query = query;
-// module.exports.syncData = syncData;
